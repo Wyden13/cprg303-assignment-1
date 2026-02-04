@@ -1,6 +1,5 @@
 import {View, Text,StyleSheet} from 'react-native';
 
-
 const LandingPage = () => {
     return (
         <View style = {styles.container}>

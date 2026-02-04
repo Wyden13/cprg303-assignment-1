@@ -6,7 +6,7 @@ import MainPage from "@/components/main-page";
 
 export default function Index() {
   return (
-    <View>
+    <View style={{flex:1}}>
       {/* <Text>Facebook Clone App</Text> */}
       <Header />
       <MainPage />
