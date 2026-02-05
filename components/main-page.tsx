@@ -1,6 +1,7 @@
-import { StatusBar, StyleSheet, View,Image, TextInput, ScrollView,Text, TouchableOpacity } from "react-native";
+import { StatusBar, StyleSheet, View,Image, TextInput, ScrollView,Text } from "react-native";
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import EvilIcons from '@expo/vector-icons/EvilIcons';
+import Button from "./button";
 
 const MainPage = () => {
   return (
@@ -89,9 +90,6 @@ const MainPage = () => {
               </View>
             </View>
           </View>
-         
-          
-          
         </ScrollView>
       </ScrollView>
     

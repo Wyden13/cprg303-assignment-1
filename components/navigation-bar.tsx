@@ -5,8 +5,6 @@ import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
-
-
 // This includes navigation icons like Home, Reels, Friends,Marketplace, Notifications, Profile
 const NavigationBar = () => {
     return (

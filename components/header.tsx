@@ -3,6 +3,7 @@ import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import Octicons from "@expo/vector-icons/Octicons";
 import React from "react";
 import { Image, StyleSheet, View } from "react-native";
+import { SvgUri } from "react-native-svg";
 
 // This includes Hamburger menu, Facebook logo, Create Post Icon, Search Icon, Messenger Icon
 const Header = () => {
@@ -11,15 +12,15 @@ const Header = () => {
       <View style={styles.leftContainer}>
         <Octicons name="three-bars" size={24} color="black" />
         <Image
-          source={{
-            uri: "https://upload.wikimedia.org/wikipedia/commons/8/87/Facebook_Logo_%282015%29_light.svg",
-          }}
-          //   source={require("../assets/images/facebook-logo.png")}
+          source={
+            // uri: "https://upload.wikimedia.org/wikipedia/commons/8/87/Facebook_Logo_%282015%29_light.svg",
+            require("../assets/images/facebook-logo.png")
+          }
           style={styles.logo}
         />
       </View>
       <View style={styles.rightContainer}>
-        <Feather name="plus-square" size={24} color="black" />
+        <Feather name="plus-square" size={24} color="black"/>
         <Feather name="search" size={24} color="black" />
         <FontAwesome6 name="facebook-messenger" size={24} color="black" />
       </View>
