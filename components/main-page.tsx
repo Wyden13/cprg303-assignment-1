@@ -1,8 +1,45 @@
-import { StatusBar, StyleSheet, View,Image, TextInput, ScrollView,Text } from "react-native";
-import FontAwesome from '@expo/vector-icons/FontAwesome';
 import EvilIcons from '@expo/vector-icons/EvilIcons';
-import Button from "./button";
+import FontAwesome from '@expo/vector-icons/FontAwesome';
+import { Image, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 
+const storiesData = [
+  {
+    id: 1,
+    username: 'John Doe',
+    avatar: require('../assets/images/noprofile.png'),
+    storyImage: { uri: "https://cdn.pixabay.com/photo/2026/01/21/11/29/11-29-50-754_1280.jpg" },
+    hasViewed: false,
+  },
+  {
+    id: 2,
+    username: 'Jane Smith',
+    avatar: require('../assets/images/noprofile.png'),
+    storyImage: {uri:"https://cdn.pixabay.com/photo/2022/03/31/00/31/music-7101987_1280.jpg"},
+    hasViewed: true,
+  },
+  {
+    id: 3,
+    username: 'Mike Johnson',
+    avatar: require('../assets/images/noprofile.png'),
+    storyImage: { uri: "https://cdn.pixabay.com/photo/2025/07/16/18/50/hike-9718263_1280.jpg" },
+    hasViewed: false,
+  },
+  {
+    id: 4,
+    username: 'Emily Davis',
+    avatar: require('../assets/images/noprofile.png'),
+    storyImage: { uri: "https://cdn.pixabay.com/photo/2025/10/24/03/17/tranquil-scene-9913086_1280.jpg" },
+    hasViewed: true,
+  },
+  {
+    id: 5,
+    username: 'David Wilson',
+    avatar: require('../assets/images/noprofile.png'),
+    storyImage: { uri: "https://cdn.pixabay.com/photo/2025/02/19/13/25/woman-9417814_1280.jpg" },
+    hasViewed: false,
+  },
+
+];
 const MainPage = () => {
   return (
     <View style={styles.container}>
@@ -18,14 +55,55 @@ const MainPage = () => {
           />
         <FontAwesome name="file-picture-o" size={24} color="#4c4c4cff" />
       </View>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.storyContainer}>
-              <View style={styles.storyCard}></View>
-              <View style={styles.storyCard}></View>
-              <View style={styles.storyCard}></View>
-              <View style={styles.storyCard}></View>
-              <View style={styles.storyCard}></View>
+      <ScrollView 
+        horizontal 
+        showsHorizontalScrollIndicator={false} 
+        style={styles.storyContainer}
+        contentContainerStyle={styles.storyContentContainer}
+      >
+        
+        <View style={styles.storyCard}>
+          <Image 
+            source={require('../assets/images/noprofile.png')} 
+            style={styles.storyImage}
+          />
+          <View style={styles.addStoryButton}>
+            <Text style={styles.addStoryIcon}>+</Text>
+          </View>
+          <Text style={styles.storyText}>Your Story</Text>
+        </View>
 
-        </ScrollView>
+        {/* Other Stories */}
+        {storiesData.map((story) => (
+          <View key={story.id} style={styles.storyCard}>
+            {/* Story Background Image */}
+            <Image 
+              source={story.storyImage} 
+              style={styles.storyImage}
+            />
+            
+            {/* Border (blue for unviewed, gray for viewed) */}
+            <View style={[
+              styles.storyBorder, 
+              { borderColor: story.hasViewed ? '#C4C4C4' : '#4267B2' }
+            ]} />
+            
+            {/* Avatar */}
+            <View style={[
+              styles.storyAvatar,
+              { borderColor: story.hasViewed ? '#C4C4C4' : '#4267B2' }
+            ]}>
+              <Image 
+                source={story.avatar} 
+                style={styles.avatarImage}
+              />
+            </View>
+            
+            {/* Username */}
+            <Text style={styles.storyText}>{story.username}</Text>
+          </View>
+        ))}
+      </ScrollView>
         <ScrollView >
           {/* Posts will go here */}
           <View style={styles.postCard}>
@@ -192,4 +270,81 @@ const styles = StyleSheet.create({
     borderWidth:1,
     marginRight:-5,
   },
+  //  storyContainer: {
+  //   paddingVertical: 10,
+  // },
+  storyContentContainer: {
+    paddingHorizontal: 10,
+    gap: 8,
+  },
+  // storyCard: {
+  //   width: 110,
+  //   height: 180,
+  //   borderRadius: 12,
+  //   overflow: 'hidden',
+  //   marginRight: 8,
+  //   position: 'relative',
+  // },
+  storyImage: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 12,
+  },
+  storyBorder: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    borderRadius: 12,
+    borderWidth: 3,
+    borderColor: '#4267B2', // FB blue for active stories
+  },
+  storyAvatar: {
+    position: 'absolute',
+    top: 8,
+    left: 8,
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    borderWidth: 3,
+    borderColor: '#4267B2',
+    backgroundColor: '#fff',
+    overflow: 'hidden',
+  },
+  avatarImage: {
+    width: '100%',
+    height: '100%',
+  },
+  addStoryButton: {
+    position: 'absolute',
+    bottom: 30,
+    left: '50%',
+    marginLeft: -18,
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    backgroundColor: '#4267B2',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 3,
+    borderColor: '#fff',
+  },
+  addStoryIcon: {
+    color: '#fff',
+    fontSize: 24,
+    fontWeight: 'bold',
+  },
+  storyText: {
+    position: 'absolute',
+    bottom: 8,
+    left: 8,
+    right: 8,
+    color: '#fff',
+    fontSize: 12,
+    fontWeight: '600',
+    textShadowColor: 'rgba(0, 0, 0, 0.75)',
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 3,
+  }
 });
